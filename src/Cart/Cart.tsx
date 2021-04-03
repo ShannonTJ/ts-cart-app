@@ -1,7 +1,24 @@
 import React from "react";
+import CartItem from "../CartItem/CartItem";
+import { Wrapper } from "./Cart.styles";
+import { CartItemType } from "../App";
 
-const Cart = () => {
-  return <div></div>;
+type Props = {
+  cartItems: CartItemType[];
+  addToCart: (clickedItem: CartItemType) => void;
+  removeFromCart: (id: number) => void;
+};
+
+const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
+  return (
+    <Wrapper>
+      <h2>Shopping Cart</h2>
+      {cartItems.length === 0 ? <p>Your cart is empty</p> : null}
+      {cartItems.map((item) => (
+        <CartItem />
+      ))}
+    </Wrapper>
+  );
 };
 
 export default Cart;
